@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AcquisitionWindow</class>
+ <widget class="QMainWindow" name="AcquisitionWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Digital Forensic SOP-Toolkit</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="mainLayout">
+
+    <!-- 🔹 Title and buttons row -->
+    <item>
+     <layout class="QHBoxLayout" name="headerLayout">
+      <item>
+       <widget class="QLabel" name="lblTitle">
+        <property name="text">
+         <string><b>Digital Forensic SOP-Toolkit</b></string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #00FFFF; font-size: 20pt; font-weight: bold;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="headerSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnSOP">
+        <property name="text">
+         <string>SOP</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #303F9F; color: white; border-radius: 6px; padding: 6px;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnAbout">
+        <property name="text">
+         <string>About</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: #009688; color: white; border-radius: 6px; padding: 6px;</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+
+    <!-- 🔹 Main content layout -->
+    <item>
+     <widget class="QLabel" name="lblInstruction">
+      <property name="text">
+       <string>Select destination folder for memory image:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="browseLayout">
+      <item>
+       <widget class="QLineEdit" name="txtPath"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnBrowse">
+        <property name="text">
+         <string>Browse</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="lblExaminer">
+      <property name="text">
+       <string>Examiner Name:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="txtExaminerName"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="lblCaseID">
+      <property name="text">
+       <string>Case ID:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="txtCaseID"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="lblNotes">
+      <property name="text">
+       <string>Notes:</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="txtNotes"/>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btnStart">
+      <property name="text">
+       <string>Start SOP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="txtLogs">
+      <property name="placeholderText">
+       <string>Logs will appear here...</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
