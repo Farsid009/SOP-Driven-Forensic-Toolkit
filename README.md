@@ -1,4 +1,4 @@
-# SOP-Driven Memory Acquisition & Automated Forensic Analysis Toolkit
+# SOP-Driven Memory Acquisition & Automated Forensic Analysis Toolkit (Still working on the project)
 
 ##  Project Overview
 **Master's Project**
