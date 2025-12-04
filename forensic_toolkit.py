@@ -1,12 +1,4 @@
 
-# === Integrated AUTH + CoC version: acquisition_with_auto_findings_SMART_ANALYSIS_FINAL_AUTH_FIXED_COC_MERGED.py ===
-# What changed vs your AUTH_FIXED file:
-# - Added Chain of Custody (CoC) system (popup after any login, sqlite 'coc_records.db')
-# - Auto-fill main window fields from CoC (Examiner, CaseID, Notes) and mark them read-only
-# - Compute SHA-256 after acquisition and update CoC DB
-# - Keep your EXISTING report layout; just prepend a CoC HTML table at the top of the HTML report
-#
-# No .ui changes required.
 
 import subprocess
 import os
@@ -26,7 +18,7 @@ from PyQt5.QtCore import QTimer, QDateTime
 
 
 # -------------------------------------------------------------------
-# AUTH & DB UTILITIES (existing from AUTH_FIXED)
+# AUTH & DB UTILITIES 
 # -------------------------------------------------------------------
 
 def _db_path():
@@ -86,7 +78,7 @@ def init_user_db():
     conn.close()
 
 
-# Password hashing with PBKDF2 (safe, no external deps)
+# Password hashing with PBKDF2 
 # Stored format: iterations$salt_hex$hash_hex
 _PBKDF2_ITERATIONS = 200_000
 
@@ -100,7 +92,7 @@ def hash_password(password: str) -> str:
 def verify_password(password: str, stored) -> bool:
     """Verify plaintext password against PBKDF2 hash string."""
     try:
-        # Ensure we’re dealing with a normal string, not bytes
+        # Ensure dealing with a normal string, not bytes
         if isinstance(stored, (bytes, bytearray)):
             stored = stored.decode("utf-8", "ignore")
 
@@ -177,7 +169,7 @@ def set_user_password(username: str, new_password: str):
 
 
 # -------------------------------------------------------------------
-# AUTH DIALOGS (existing from AUTH_FIXED)
+# AUTH DIALOGS 
 # -------------------------------------------------------------------
 
 class RegistrationDialog(QDialog):
@@ -349,7 +341,7 @@ class LoginDialog(QDialog):
 
 
 # -------------------------------------------------------------------
-# CHAIN OF CUSTODY (newly added from _COC.py, adapted)
+# CHAIN OF CUSTODY 
 # -------------------------------------------------------------------
 
 def _coc_db_path():
@@ -515,7 +507,7 @@ class CoCDialog(QDialog):
 
 
 # -------------------------------------------------------------------
-# ORIGINAL FUNCTIONS (from AUTH_FIXED, kept)
+# ORIGINAL FUNCTIONS 
 # -------------------------------------------------------------------
 
 def analyze_key_findings(logs_text):
@@ -616,7 +608,7 @@ def generate_html_report(selected_path, logs_text, examiner_name, case_id, notes
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     hash_value = generate_file_hash(selected_path)
 
-    # Update hash into coc_data (and DB already updated elsewhere)
+    # Update hash into coc_data 
     if coc_data is not None:
         coc_data = dict(coc_data)  # copy to avoid side-effects
         coc_data["hash_value"] = hash_value
@@ -922,7 +914,7 @@ if __name__ == "__main__":
 
         username, role = login.logged_in_user
 
-        # 2) If admin logged in, show Admin Panel first (as before)
+        # 2) If admin logged in, show Admin Panel first 
         if role == "admin":
             panel = AdminPanel()
             panel.exec_()
@@ -933,7 +925,7 @@ if __name__ == "__main__":
                                     QMessageBox.Yes) != QMessageBox.Yes:
                 sys.exit(0)
 
-        # 3) ALWAYS show CoC popup after any login (as requested)
+        # 3) ALWAYS show CoC popup after any login 
         coc = CoCDialog(logged_in_user=username)
         if coc.exec_() != QDialog.Accepted or not coc.saved_data:
             # Cancel -> exit cleanly
